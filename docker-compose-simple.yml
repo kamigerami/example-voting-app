@@ -2,7 +2,8 @@ version: "2"
 
 services:
   vote:
-    build: ./vote
+    #build: ./vote
+    image: kamigerami/vote_app
     command: python app.py
     volumes:
      - ./vote:/app
@@ -14,16 +15,18 @@ services:
     ports: ["6379"]
 
   worker:
-    build: ./worker
+    #build: ./worker
+    image: kamigerami/worker_app
 
   db:
     image: postgres:9.4
 
   result:
-    build: ./result
+    #build: ./result
+    image: kamigerami/result_app
     command: nodemon --debug server.js
     volumes:
       - ./result:/app
     ports:
-      - "5001:80"
+      - "5111:80"
       - "5858:5858"
